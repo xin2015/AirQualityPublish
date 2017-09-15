@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AirQualityPublish.Model.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -25,6 +26,74 @@ namespace AirQualityPublish.Model
             return container;
         }
 
+        private MappingConfiguration<Station> GetStationMappingConfiguration()
+        {
+            MappingConfiguration<Station> configuration = new MappingConfiguration<Station>();
 
+            configuration.MapType().ToTable(typeof(Station).Name);
+
+            configuration.HasProperty(x => x.Id).IsIdentity(KeyGenerator.Autoinc);
+            configuration.HasProperty(x => x.Code).IsNotNullable().HasColumnType("nvarchar").HasLength(64);
+            configuration.HasProperty(x => x.Name).IsNotNullable().HasColumnType("nvarchar").HasLength(128);
+            configuration.HasProperty(x => x.EnvPublishCode).IsNotNullable().HasColumnType("nvarchar").HasLength(8);
+
+            return configuration;
+        }
+
+        private MappingConfiguration<StationHourMonitorAirQuality> GetStationHourMonitorAirQualityMappingConfiguration()
+        {
+            MappingConfiguration<StationHourMonitorAirQuality> configuration = new MappingConfiguration<StationHourMonitorAirQuality>();
+
+            configuration.MapType().ToTable(typeof(StationHourMonitorAirQuality).Name);
+
+            configuration.HasProperty(x => x.Code).IsIdentity().IsNotNullable().HasColumnType("nvarchar").HasLength(64);
+            configuration.HasProperty(x => x.Time).IsIdentity();
+            configuration.HasProperty(x => x.PrimaryPollutant).HasColumnType("nvarchar").HasLength(128);
+            configuration.HasProperty(x => x.Type).HasColumnType("nvarchar").HasLength(8);
+
+            return configuration;
+        }
+
+        private MappingConfiguration<StationDayMonitorAirQuality> GetStationDayMonitorAirQualityMappingConfiguration()
+        {
+            MappingConfiguration<StationDayMonitorAirQuality> configuration = new MappingConfiguration<StationDayMonitorAirQuality>();
+
+            configuration.MapType().ToTable(typeof(StationDayMonitorAirQuality).Name);
+
+            configuration.HasProperty(x => x.Code).IsIdentity().IsNotNullable().HasColumnType("nvarchar").HasLength(64);
+            configuration.HasProperty(x => x.Time).IsIdentity();
+            configuration.HasProperty(x => x.PrimaryPollutant).HasColumnType("nvarchar").HasLength(128);
+            configuration.HasProperty(x => x.Type).HasColumnType("nvarchar").HasLength(8);
+
+            return configuration;
+        }
+
+        private MappingConfiguration<CityHourMonitorAirQuality> GetCityHourMonitorAirQualityMappingConfiguration()
+        {
+            MappingConfiguration<CityHourMonitorAirQuality> configuration = new MappingConfiguration<CityHourMonitorAirQuality>();
+
+            configuration.MapType().ToTable(typeof(CityHourMonitorAirQuality).Name);
+
+            configuration.HasProperty(x => x.Code).IsIdentity().IsNotNullable().HasColumnType("nvarchar").HasLength(64);
+            configuration.HasProperty(x => x.Time).IsIdentity();
+            configuration.HasProperty(x => x.PrimaryPollutant).HasColumnType("nvarchar").HasLength(128);
+            configuration.HasProperty(x => x.Type).HasColumnType("nvarchar").HasLength(8);
+
+            return configuration;
+        }
+
+        private MappingConfiguration<CityDayMonitorAirQuality> GetCityDayMonitorAirQualityMappingConfiguration()
+        {
+            MappingConfiguration<CityDayMonitorAirQuality> configuration = new MappingConfiguration<CityDayMonitorAirQuality>();
+
+            configuration.MapType().ToTable(typeof(CityDayMonitorAirQuality).Name);
+
+            configuration.HasProperty(x => x.Code).IsIdentity().IsNotNullable().HasColumnType("nvarchar").HasLength(64);
+            configuration.HasProperty(x => x.Time).IsIdentity();
+            configuration.HasProperty(x => x.PrimaryPollutant).HasColumnType("nvarchar").HasLength(128);
+            configuration.HasProperty(x => x.Type).HasColumnType("nvarchar").HasLength(8);
+
+            return configuration;
+        }
     }
 }

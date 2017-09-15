@@ -10,9 +10,9 @@ namespace AirQualityPublish.Model
 {
     public class FluentModel : OpenAccessContext, IUnitOfWork
     {
-        static string connectionStringName = @"AirQualityPublishConnection";
-        static MetadataContainer metadataContainer = new FluentModelMetadataSource().GetModel();
-        static BackendConfiguration backendConfiguration = new BackendConfiguration()
+        private static string connectionStringName = @"AirQualityPublishConnection";
+        private static MetadataContainer metadataContainer = new FluentModelMetadataSource().GetModel();
+        private static BackendConfiguration backendConfiguration = new BackendConfiguration()
         {
             Backend = "MsSql",
             ProviderName = "System.Data.SqlClient"
