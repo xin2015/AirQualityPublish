@@ -20,6 +20,21 @@ namespace AirQualityPublish.BLL.Syncs
         void Sync();
 
         /// <summary>
+        /// 同步数据
+        /// </summary>
+        /// <param name="time">时间</param>
+        /// <returns></returns>
+        ReturnStatus Sync(DateTime time);
+
+        /// <summary>
+        /// 同步数据
+        /// </summary>
+        /// <param name="beginTime">开始时间</param>
+        /// <param name="endTime">结束时间</param>
+        /// <returns></returns>
+        ReturnStatus Sync(DateTime beginTime, DateTime endTime);
+
+        /// <summary>
         /// 回补数据
         /// </summary>
         void Cover();
@@ -38,27 +53,12 @@ namespace AirQualityPublish.BLL.Syncs
         ReturnStatus Cover(DateTime time);
 
         /// <summary>
-        /// 同步数据
-        /// </summary>
-        /// <param name="time">时间</param>
-        /// <returns></returns>
-        ReturnStatus Sync(DateTime time);
-
-        /// <summary>
         /// 回补数据
         /// </summary>
         /// <param name="beginTime">开始时间</param>
         /// <param name="endTime">结束时间</param>
         /// <returns></returns>
         ReturnStatus Cover(DateTime beginTime, DateTime endTime);
-
-        /// <summary>
-        /// 同步数据
-        /// </summary>
-        /// <param name="beginTime">开始时间</param>
-        /// <param name="endTime">结束时间</param>
-        /// <returns></returns>
-        ReturnStatus Sync(DateTime beginTime, DateTime endTime);
     }
 
     public abstract class SyncBase<TEntity> : ISync where TEntity : ICodeTimeEntity
@@ -141,9 +141,21 @@ namespace AirQualityPublish.BLL.Syncs
         {
             return GetSyncData(code, time);
         }
+
+        /// <summary>
+        /// 获取回补记录
+        /// </summary>
+        /// <returns></returns>
+        protected virtual IEnumerable<MissingDataRecord> GetRecords()
+        {
+            return MDRRepository.GetList(Type);
+        }
         #endregion
 
         #region 公共方法
+        /// <summary>
+        /// 同步数据
+        /// </summary>
         public virtual void Sync()
         {
             try
@@ -165,6 +177,11 @@ namespace AirQualityPublish.BLL.Syncs
             }
         }
 
+        /// <summary>
+        /// 同步数据
+        /// </summary>
+        /// <param name="time">时间</param>
+        /// <returns></returns>
         public virtual ReturnStatus Sync(DateTime time)
         {
             ReturnStatus rs;
@@ -185,6 +202,33 @@ namespace AirQualityPublish.BLL.Syncs
                 rs = new ReturnStatus("同步失败！", e);
             }
             return rs;
+        }
+
+        /// <summary>
+        /// 回补数据
+        /// </summary>
+        public virtual void Cover()
+        {
+
+        }
+
+        /// <summary>
+        /// 回补数据
+        /// </summary>
+        /// <param name="records">回补记录</param>
+        public virtual void Cover(IEnumerable<MissingDataRecord> records)
+        {
+            try
+            {
+                foreach (MissingDataRecord record in records)
+                {
+                    Cover(record);
+                }
+            }
+            catch (Exception e)
+            {
+
+            }
         }
         #endregion
     }

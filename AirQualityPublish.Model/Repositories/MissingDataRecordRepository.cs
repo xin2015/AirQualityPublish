@@ -10,6 +10,13 @@ namespace AirQualityPublish.Model.Repositories
 {
     public class MissingDataRecordRepository : Repository<MissingDataRecord>
     {
+        static int maxMissTimes;
+
+        static MissingDataRecordRepository()
+        {
+            maxMissTimes = 30;
+        }
+
         public MissingDataRecordRepository(OpenAccessContext context) : base(context)
         {
         }
@@ -24,6 +31,11 @@ namespace AirQualityPublish.Model.Repositories
                 CreationTime = DateTime.Now,
                 Exception = exception.Message
             });
+        }
+
+        public IQueryable<MissingDataRecord> GetList(string type)
+        {
+            return GetAll().Where(o => o.Type == type && !o.Status && o.MissTimes <= maxMissTimes);
         }
     }
 }
