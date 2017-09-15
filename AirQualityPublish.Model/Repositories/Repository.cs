@@ -10,36 +10,36 @@ namespace AirQualityPublish.Model.Repositories
 {
     public class Repository<TEntity> where TEntity : IEntity
     {
-        private OpenAccessContext db;
+        protected OpenAccessContext DB { get; set; }
 
         public Repository(OpenAccessContext context)
         {
-            db = context;
+            DB = context;
         }
 
         public IQueryable<TEntity> GetAll()
         {
-            return db.GetAll<TEntity>();
+            return DB.GetAll<TEntity>();
         }
 
         public void Add(TEntity entity)
         {
-            db.Add(entity);
+            DB.Add(entity);
         }
 
         public void Add(IEnumerable<TEntity> entities)
         {
-            db.Add(entities);
+            DB.Add(entities);
         }
 
         public void Delete(TEntity entity)
         {
-            db.Delete(entity);
+            DB.Delete(entity);
         }
 
         public void Delete(IEnumerable<TEntity> entities)
         {
-            db.Delete(entities);
+            DB.Delete(entities);
         }
     }
 }

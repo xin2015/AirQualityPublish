@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AirQualityPublish.Model.Entities
 {
-    public class StationHourMonitorAirQuality : IMonitorAirQuality
+    public class StationHourMonitorAirQuality : IMonitorAirQualityEntity
     {
         public string Code { get; set; }
         public DateTime Time { get; set; }

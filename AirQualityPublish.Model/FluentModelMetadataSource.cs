@@ -26,6 +26,21 @@ namespace AirQualityPublish.Model
             return container;
         }
 
+        private MappingConfiguration<MissingDataRecord> GetMissingDataRecordMappingConfiguration()
+        {
+            MappingConfiguration<MissingDataRecord> configuration = new MappingConfiguration<MissingDataRecord>();
+
+            configuration.MapType().ToTable(typeof(MissingDataRecord).Name);
+
+            configuration.HasProperty(x => x.Id).IsIdentity(KeyGenerator.Autoinc);
+            configuration.HasProperty(x => x.Type).IsNotNullable().HasColumnType("nvarchar").HasLength(256);
+            configuration.HasProperty(x => x.Code).IsNotNullable().HasColumnType("nvarchar").HasLength(64);
+            configuration.HasProperty(x => x.Exception).HasColumnType("nvarchar(MAX)");
+            configuration.HasProperty(x => x.Others).HasColumnType("nvarchar(MAX)");
+
+            return configuration;
+        }
+
         private MappingConfiguration<Station> GetStationMappingConfiguration()
         {
             MappingConfiguration<Station> configuration = new MappingConfiguration<Station>();
