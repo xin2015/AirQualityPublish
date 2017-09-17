@@ -35,7 +35,7 @@ namespace AirQualityPublish.Model
             configuration.HasProperty(x => x.Id).IsIdentity(KeyGenerator.Autoinc);
             configuration.HasProperty(x => x.Type).IsNotNullable().HasColumnType("nvarchar").HasLength(256);
             configuration.HasProperty(x => x.Code).IsNotNullable().HasColumnType("nvarchar").HasLength(64);
-            configuration.HasProperty(x => x.Exception).HasColumnType("nvarchar(MAX)");
+            configuration.HasProperty(x => x.Message).HasColumnType("nvarchar(MAX)");
             configuration.HasProperty(x => x.Others).HasColumnType("nvarchar(MAX)");
 
             return configuration;

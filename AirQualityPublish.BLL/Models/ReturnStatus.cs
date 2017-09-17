@@ -24,12 +24,5 @@ namespace AirQualityPublish.BLL.Models
             Message = message;
             Exception = exception;
         }
-
-        public ReturnStatus(Exception exception)
-        {
-            Status = false;
-            Message = exception.Message;
-            Exception = exception;
-        }
     }
 }

@@ -11,6 +11,8 @@ namespace AirQualityPublish.BLL.Models
         public string State { get; set; }
         public string Message { get; set; }
 
+        public ReturnState() { }
+
         public ReturnState(string state, string message)
         {
             State = state;

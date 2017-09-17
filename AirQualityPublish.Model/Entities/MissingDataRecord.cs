@@ -16,7 +16,7 @@ namespace AirQualityPublish.Model.Entities
         public DateTime? LastModificationTime { get; set; }
         public bool Status { get; set; }
         public int MissTimes { get; set; }
-        public string Exception { get; set; }
+        public string Message { get; set; }
         public string Others { get; set; }
     }
 }

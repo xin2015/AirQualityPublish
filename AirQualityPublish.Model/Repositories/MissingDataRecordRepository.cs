@@ -21,7 +21,7 @@ namespace AirQualityPublish.Model.Repositories
         {
         }
 
-        public void Add(string type, string code, DateTime time, Exception exception)
+        public void Add(string type, string code, DateTime time, string message)
         {
             Add(new MissingDataRecord()
             {
@@ -29,8 +29,22 @@ namespace AirQualityPublish.Model.Repositories
                 Code = code,
                 Time = time,
                 CreationTime = DateTime.Now,
-                Exception = exception.Message
+                Message = message
             });
+        }
+
+        public void Update(MissingDataRecord mdr, bool status, string message = null)
+        {
+            if (status)
+            {
+                mdr.Status = status;
+            }
+            else
+            {
+                mdr.MissTimes += 1;
+                mdr.Message = message;
+            }
+            mdr.LastModificationTime = DateTime.Now;
         }
 
         public IQueryable<MissingDataRecord> GetList(string type)
