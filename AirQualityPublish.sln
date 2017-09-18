@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AirQualityPublish.Model", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AirQualityPublish.BLL", "AirQualityPublish.BLL\AirQualityPublish.BLL.csproj", "{562372DB-A593-4EB4-8533-EFC3BA1C5DB7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AirQualityPublish.Service", "AirQualityPublish.Service\AirQualityPublish.Service.csproj", "{6700A44B-8183-4AA8-A3CD-5BD9431FA7FD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AirQualityPublish.Web", "AirQualityPublish.Web\AirQualityPublish.Web.csproj", "{C4A8E561-49B7-4A93-80A4-3BD70DC92EF2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{562372DB-A593-4EB4-8533-EFC3BA1C5DB7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{562372DB-A593-4EB4-8533-EFC3BA1C5DB7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{562372DB-A593-4EB4-8533-EFC3BA1C5DB7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6700A44B-8183-4AA8-A3CD-5BD9431FA7FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6700A44B-8183-4AA8-A3CD-5BD9431FA7FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6700A44B-8183-4AA8-A3CD-5BD9431FA7FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6700A44B-8183-4AA8-A3CD-5BD9431FA7FD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C4A8E561-49B7-4A93-80A4-3BD70DC92EF2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C4A8E561-49B7-4A93-80A4-3BD70DC92EF2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C4A8E561-49B7-4A93-80A4-3BD70DC92EF2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C4A8E561-49B7-4A93-80A4-3BD70DC92EF2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

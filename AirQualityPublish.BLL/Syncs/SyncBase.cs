@@ -45,7 +45,7 @@ namespace AirQualityPublish.BLL.Syncs
         /// 回补数据
         /// </summary>
         /// <param name="list">回补记录集合</param>
-        void Cover(List<MissingDataRecord> list);
+        ReturnStatus Cover(List<MissingDataRecord> list);
 
         /// <summary>
         /// 回补数据
@@ -69,7 +69,7 @@ namespace AirQualityPublish.BLL.Syncs
     {
         protected ILog Logger { get; set; }
         protected OpenAccessContext DB { get; set; }
-        protected CodeTimeEntityRepository<TEntity> Repository { get; set; }
+        protected CodeTimeRepository<TEntity> Repository { get; set; }
         protected MissingDataRecordRepository MDRRepository { get; set; }
         protected string Type { get; set; }
         protected TimeSpan Interval { get; set; }
@@ -77,7 +77,7 @@ namespace AirQualityPublish.BLL.Syncs
         public SyncBase(OpenAccessContext context)
         {
             DB = context;
-            Repository = new CodeTimeEntityRepository<TEntity>(context);
+            Repository = new CodeTimeRepository<TEntity>(context);
             MDRRepository = new MissingDataRecordRepository(context);
             Type = typeof(TEntity).Name;
         }
@@ -95,14 +95,20 @@ namespace AirQualityPublish.BLL.Syncs
         /// <param name="time">时间</param>
         /// <param name="conditions">条件</param>
         /// <returns></returns>
-        protected abstract bool IsSynchronized(string code, DateTime time);
+        protected virtual bool IsSynchronized(string code, DateTime time)
+        {
+            return Repository.Contains(code, time);
+        }
 
         /// <summary>
         /// 判断是否已同步
         /// </summary>
         /// <param name="time">时间</param>
         /// <returns></returns>
-        protected abstract bool IsSynchronized(DateTime time);
+        protected virtual bool IsSynchronized(DateTime time)
+        {
+            return Repository.Contains(time);
+        }
 
         /// <summary>
         /// 获取时间点对应的Codes
@@ -142,6 +148,26 @@ namespace AirQualityPublish.BLL.Syncs
         }
 
         /// <summary>
+        /// 同步数据
+        /// </summary>
+        /// <param name="time">时间</param>
+        /// <returns></returns>
+        protected virtual List<bool> Sync(DateTime time)
+        {
+            List<bool> list = new List<bool>();
+            if (!IsSynchronized(time))
+            {
+                string[] codes = GetCodes(time);
+                foreach (string code in codes)
+                {
+                    list.Add(Sync(code, time));
+                }
+                DB.SaveChanges();
+            }
+            return list;
+        }
+
+        /// <summary>
         /// 获取数据（同步）
         /// </summary>
         /// <param name="code">编码</param>
@@ -167,6 +193,17 @@ namespace AirQualityPublish.BLL.Syncs
         protected virtual List<MissingDataRecord> GetRecords()
         {
             return MDRRepository.GetList(Type).ToList();
+        }
+
+        /// <summary>
+        /// 获取回补记录
+        /// </summary>
+        /// <param name="code">编码</param>
+        /// <param name="time">时间</param>
+        /// <returns></returns>
+        protected virtual MissingDataRecord GetRecord(string code, DateTime time)
+        {
+            return MDRRepository.Get(Type, code, time);
         }
 
         /// <summary>
@@ -199,6 +236,27 @@ namespace AirQualityPublish.BLL.Syncs
             }
             return result;
         }
+
+        /// <summary>
+        /// 回补数据
+        /// </summary>
+        /// <param name="code">编码</param>
+        /// <param name="time">时间</param>
+        /// <returns></returns>
+        protected virtual bool Cover(string code, DateTime time)
+        {
+            bool result;
+            MissingDataRecord mdr = GetRecord(code, time);
+            if (mdr == null)
+            {
+                result = Sync(code, time);
+            }
+            else
+            {
+                result = Cover(mdr);
+            }
+            return result;
+        }
         #endregion
 
         #region 公共方法
@@ -210,48 +268,13 @@ namespace AirQualityPublish.BLL.Syncs
             try
             {
                 DateTime time = GetTime();
-                ReturnStatus rs = Sync(time);
-                if (rs.Exception == null)
-                {
-                    Logger.Info(rs.Message);
-                }
-                else
-                {
-                    Logger.Error(rs.Message, rs.Exception);
-                }
+                List<bool> list = Sync(time);
+                Logger.Info(string.Format("同步成功！成功{0}个，失败{1}个。", list.Count(o => o), list.Count(o => !o)));
             }
             catch (Exception e)
             {
                 Logger.Error("同步失败！", e);
             }
-        }
-
-        /// <summary>
-        /// 同步数据
-        /// </summary>
-        /// <param name="time">时间</param>
-        /// <returns></returns>
-        public virtual ReturnStatus Sync(DateTime time)
-        {
-            ReturnStatus rs;
-            try
-            {
-                List<bool> list = new List<bool>();
-                if (!IsSynchronized(time))
-                {
-                    string[] codes = GetCodes(time);
-                    foreach (string code in codes)
-                    {
-                        list.Add(Sync(code, time));
-                    }
-                }
-                rs = new ReturnStatus(true, string.Format("同步成功！成功{0}个，失败{1}个。", list.Count(o => o), list.Count(o => !o)));
-            }
-            catch (Exception e)
-            {
-                rs = new ReturnStatus("同步失败！", e);
-            }
-            return rs;
         }
 
         /// <summary>
@@ -274,6 +297,7 @@ namespace AirQualityPublish.BLL.Syncs
                         list.Add(Sync(code, time));
                     }
                 }
+                DB.SaveChanges();
                 rs = new ReturnStatus(true, string.Format("同步成功！成功{0}个，失败{1}个。", list.Count(o => o), list.Count(o => !o)));
             }
             catch (Exception e)
@@ -294,18 +318,12 @@ namespace AirQualityPublish.BLL.Syncs
             ReturnStatus rs;
             try
             {
+                List<bool> list = new List<bool>();
                 for (DateTime time = beginTime; time <= endTime; time = time.Add(Interval))
                 {
-                    if (!IsSynchronized(time))
-                    {
-                        string[] codes = GetCodes(time);
-                        foreach (string code in codes)
-                        {
-                            Sync(code, time);
-                        }
-                    }
+                    list.AddRange(Sync(time));
                 }
-                rs = new ReturnStatus(true, "同步成功！");
+                rs = new ReturnStatus(true, string.Format("同步成功！成功{0}个，失败{1}个。", list.Count(o => o), list.Count(o => !o)));
             }
             catch (Exception e)
             {
@@ -321,9 +339,9 @@ namespace AirQualityPublish.BLL.Syncs
         {
             try
             {
-                IEnumerable<MissingDataRecord> records = GetRecords();
+                List<MissingDataRecord> records = GetRecords();
                 ReturnStatus rs = Cover(records);
-                if (rs.Exception == null)
+                if (rs.Status)
                 {
                     Logger.Info(rs.Message);
                 }
@@ -334,8 +352,7 @@ namespace AirQualityPublish.BLL.Syncs
             }
             catch (Exception e)
             {
-
-                throw;
+                Logger.Error("回补失败！", e);
             }
         }
 
@@ -343,16 +360,78 @@ namespace AirQualityPublish.BLL.Syncs
         /// 回补数据
         /// </summary>
         /// <param name="records">回补记录</param>
-        public virtual ReturnStatus Cover(IEnumerable<MissingDataRecord> records)
+        public virtual ReturnStatus Cover(List<MissingDataRecord> records)
         {
             ReturnStatus rs;
             try
             {
-                foreach (MissingDataRecord record in records)
+                List<bool> list = new List<bool>();
+                records.ForEach(o => list.Add(Cover(o)));
+                DB.SaveChanges();
+                rs = new ReturnStatus(true, string.Format("回补成功！成功{0}个，失败{1}个。", list.Count(o => o), list.Count(o => !o)));
+            }
+            catch (Exception e)
+            {
+                rs = new ReturnStatus("回补失败！", e);
+            }
+            return rs;
+        }
+
+        /// <summary>
+        /// 回补数据
+        /// </summary>
+        /// <param name="code">编码</param>
+        /// <param name="beginTime">开始时间</param>
+        /// <param name="endTime">结束时间</param>
+        /// <returns></returns>
+        public virtual ReturnStatus Cover(string code, DateTime beginTime, DateTime endTime)
+        {
+            ReturnStatus rs;
+            try
+            {
+                List<bool> list = new List<bool>();
+                for (DateTime time = beginTime; time <= endTime; time = time.Add(Interval))
                 {
-                    Cover(record);
+                    if (!IsSynchronized(code, time))
+                    {
+                        list.Add(Cover(code, time));
+                    }
                 }
-                rs = new ReturnStatus(true, "回补成功！");
+                DB.SaveChanges();
+                rs = new ReturnStatus(true, string.Format("回补成功！成功{0}个，失败{1}个。", list.Count(o => o), list.Count(o => !o)));
+            }
+            catch (Exception e)
+            {
+                rs = new ReturnStatus("回补失败！", e);
+            }
+            return rs;
+        }
+
+        /// <summary>
+        /// 回补数据
+        /// </summary>
+        /// <param name="beginTime">开始时间</param>
+        /// <param name="endTime">结束时间</param>
+        /// <returns></returns>
+        public ReturnStatus Cover(DateTime beginTime, DateTime endTime)
+        {
+            ReturnStatus rs;
+            try
+            {
+                List<bool> list = new List<bool>();
+                for (DateTime time = beginTime; time <= endTime; time = time.Add(Interval))
+                {
+                    string[] codes = GetCodes(time);
+                    foreach (string code in codes)
+                    {
+                        if (!IsSynchronized(code, time))
+                        {
+                            list.Add(Cover(code, time));
+                        }
+                    }
+                    DB.SaveChanges();
+                }
+                rs = new ReturnStatus(true, string.Format("回补成功！成功{0}个，失败{1}个。", list.Count(o => o), list.Count(o => !o)));
             }
             catch (Exception e)
             {

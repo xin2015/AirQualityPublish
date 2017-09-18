@@ -8,9 +8,9 @@ using Telerik.OpenAccess;
 
 namespace AirQualityPublish.Model.Repositories
 {
-    public class CodeTimeEntityRepository<TEntity> : Repository<TEntity> where TEntity : ICodeTimeEntity
+    public class CodeTimeRepository<TEntity> : Repository<TEntity> where TEntity : ICodeTimeEntity
     {
-        public CodeTimeEntityRepository(OpenAccessContext context) : base(context)
+        public CodeTimeRepository(OpenAccessContext context) : base(context)
         {
         }
 

@@ -14,5 +14,6 @@ namespace AirQualityPublish.Model.Entities
         public string EnvPublishCode { get; set; }
         public double Longitude { get; set; }
         public double Latitude { get; set; }
+        public bool Status { get; set; }
     }
 }

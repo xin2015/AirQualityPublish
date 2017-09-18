@@ -73,9 +73,10 @@
     <Compile Include="Entities\Station.cs" />
     <Compile Include="FluentModelMetadataSource.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repositories\CodeTimeEntityRepository.cs" />
+    <Compile Include="Repositories\CodeTimeRepository.cs" />
     <Compile Include="Repositories\MissingDataRecordRepository.cs" />
     <Compile Include="Repositories\Repository.cs" />
+    <Compile Include="Repositories\StationRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

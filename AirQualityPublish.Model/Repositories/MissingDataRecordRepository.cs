@@ -47,9 +47,19 @@ namespace AirQualityPublish.Model.Repositories
             mdr.LastModificationTime = DateTime.Now;
         }
 
+        public MissingDataRecord Get(string type, string code, DateTime time)
+        {
+            return GetAll().FirstOrDefault(o => o.Type == type && o.Code == code && o.Time == time);
+        }
+
         public IQueryable<MissingDataRecord> GetList(string type)
         {
             return GetAll().Where(o => o.Type == type && !o.Status && o.MissTimes <= maxMissTimes);
+        }
+
+        public IQueryable<MissingDataRecord> GetList(int[] ids)
+        {
+            return GetAll().Where(o => ids.Contains(o.Id));
         }
     }
 }
