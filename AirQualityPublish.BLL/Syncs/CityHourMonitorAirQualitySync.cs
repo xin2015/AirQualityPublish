@@ -1,7 +1,7 @@
 ﻿using AirQualityPublish.BLL.Extensions;
 using AirQualityPublish.BLL.Helpers;
+using AirQualityPublish.BLL.Models;
 using AirQualityPublish.Model.Entities;
-using AirQualityPublish.Model.Repositories;
 using Common.Logging;
 using Modules.AQE.AQI;
 using System;
@@ -13,15 +13,12 @@ using Telerik.OpenAccess;
 
 namespace AirQualityPublish.BLL.Syncs
 {
-    public class StationHourMonitorAirQualitySync : SyncBase<StationHourMonitorAirQuality>
+    public class CityHourMonitorAirQualitySync : SyncBase<CityHourMonitorAirQuality>
     {
-        protected Station[] Stations { get; set; }
-
-        public StationHourMonitorAirQualitySync(OpenAccessContext context) : base(context)
+        public CityHourMonitorAirQualitySync(OpenAccessContext context) : base(context)
         {
-            Logger = LogManager.GetLogger<StationHourMonitorAirQualitySync>();
+            Logger = LogManager.GetLogger<CityHourMonitorAirQualitySync>();
             Interval = TimeSpan.FromHours(1);
-            Stations = new StationRepository(context).GetList().ToArray();
         }
 
         protected override DateTime GetTime()
@@ -31,20 +28,19 @@ namespace AirQualityPublish.BLL.Syncs
 
         protected override string[] GetCodes(DateTime time)
         {
-            return Stations.Select(o => o.Code).ToArray();
+            return new string[] { SystemConfig.CityCode };
         }
 
-        protected override List<StationHourMonitorAirQuality> GetSyncData(string code, DateTime time)
+        protected override List<CityHourMonitorAirQuality> GetSyncData(string code, DateTime time)
         {
-            List<StationHourMonitorAirQuality> list = new List<StationHourMonitorAirQuality>();
-            Station station = Stations.First(o => o.Code == code);
+            List<CityHourMonitorAirQuality> list = new List<CityHourMonitorAirQuality>();
             using (CNEMCService.CNEMCServiceClient client = new CNEMCService.CNEMCServiceClient())
             {
                 string key = client.Login(CNEMCServiceHelper.GetLoginState());
-                CNEMCService.AQIDataPublishLive src = client.GetAQIDataPublishLive(key, station.EnvPublishCode, time);
+                CNEMCService.CityAQIPublishLive src = client.GetCityAQIPublishLive(key, code, time);
                 if (src != null)
                 {
-                    StationHourMonitorAirQuality data = new StationHourMonitorAirQuality()
+                    CityHourMonitorAirQuality data = new CityHourMonitorAirQuality()
                     {
                         Code = code,
                         Time = time,
@@ -52,7 +48,7 @@ namespace AirQualityPublish.BLL.Syncs
                         NO2 = src.NO2.ToNullableDouble(),
                         PM10 = src.PM10.ToNullableDouble(),
                         CO = src.CO.ToNullableDouble(),
-                        O3 = src.O3_24h.ToNullableDouble(),
+                        O3 = src.O3.ToNullableDouble(),
                         PM25 = src.PM2_5.ToNullableDouble()
                     };
                     HourAQICalculator calculator = new HourAQICalculator();
@@ -63,17 +59,16 @@ namespace AirQualityPublish.BLL.Syncs
             return list;
         }
 
-        protected override List<StationHourMonitorAirQuality> GetCoverData(string code, DateTime time)
+        protected override List<CityHourMonitorAirQuality> GetCoverData(string code, DateTime time)
         {
-            List<StationHourMonitorAirQuality> list = new List<StationHourMonitorAirQuality>();
-            Station station = Stations.First(o => o.Code == code);
+            List<CityHourMonitorAirQuality> list = new List<CityHourMonitorAirQuality>();
             using (CNEMCService.CNEMCServiceClient client = new CNEMCService.CNEMCServiceClient())
             {
                 string key = client.Login(CNEMCServiceHelper.GetLoginState());
-                CNEMCService.AQIDataPublishHistory src = client.GetAQIDataPublishHistory(key, station.EnvPublishCode, time);
+                CNEMCService.CityAQIPublishHistory src = client.GetCityAQIPublishHistory(key, code, time);
                 if (src != null)
                 {
-                    StationHourMonitorAirQuality data = new StationHourMonitorAirQuality()
+                    CityHourMonitorAirQuality data = new CityHourMonitorAirQuality()
                     {
                         Code = code,
                         Time = time,
@@ -81,7 +76,7 @@ namespace AirQualityPublish.BLL.Syncs
                         NO2 = src.NO2.ToNullableDouble(),
                         PM10 = src.PM10.ToNullableDouble(),
                         CO = src.CO.ToNullableDouble(),
-                        O3 = src.O3_24h.ToNullableDouble(),
+                        O3 = src.O3.ToNullableDouble(),
                         PM25 = src.PM2_5.ToNullableDouble()
                     };
                     HourAQICalculator calculator = new HourAQICalculator();

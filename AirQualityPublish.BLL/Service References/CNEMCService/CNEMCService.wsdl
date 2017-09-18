@@ -1,0 +1,972 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="CNEMCService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://cityphoto.suncereltd.cn:18410/CNEMCService.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://cityphoto.suncereltd.cn:18410/CNEMCService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://cityphoto.suncereltd.cn:18410/CNEMCService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/CNEMC.WCF" />
+      <xsd:import schemaLocation="http://cityphoto.suncereltd.cn:18410/CNEMCService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/System" />
+      <xsd:import schemaLocation="http://cityphoto.suncereltd.cn:18410/CNEMCService.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/CNEMC.DAL" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="ICNEMCService_Login_InputMessage">
+    <wsdl:part name="parameters" element="tns:Login" />
+  </wsdl:message>
+  <wsdl:message name="ICNEMCService_Login_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LoginResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICNEMCService_GetLoginUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetLoginUser" />
+  </wsdl:message>
+  <wsdl:message name="ICNEMCService_GetLoginUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetLoginUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICNEMCService_GetAir_Cityday_AQI_App_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAir_Cityday_AQI_App" />
+  </wsdl:message>
+  <wsdl:message name="ICNEMCService_GetAir_Cityday_AQI_App_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAir_Cityday_AQI_AppResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICNEMCService_GetAir_Cityday_AQI_AppList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAir_Cityday_AQI_AppList" />
+  </wsdl:message>
+  <wsdl:message name="ICNEMCService_GetAir_Cityday_AQI_AppList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAir_Cityday_AQI_AppListResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICNEMCService_GetAir_Cityday_AQI_AppListByTime_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAir_Cityday_AQI_AppListByTime" />
+  </wsdl:message>
+  <wsdl:message name="ICNEMCService_GetAir_Cityday_AQI_AppListByTime_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAir_Cityday_AQI_AppListByTimeResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICNEMCService_GetAir_Cityday_AQI_Src_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAir_Cityday_AQI_Src" />
+  </wsdl:message>
+  <wsdl:message name="ICNEMCService_GetAir_Cityday_AQI_Src_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAir_Cityday_AQI_SrcResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICNEMCService_GetAir_Cityday_AQI_SrcList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAir_Cityday_AQI_SrcList" />
+  </wsdl:message>
+  <wsdl:message name="ICNEMCService_GetAir_Cityday_AQI_SrcList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAir_Cityday_AQI_SrcListResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICNEMCService_GetAir_Cityday_AQI_SrcListByTime_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAir_Cityday_AQI_SrcListByTime" />
+  </wsdl:message>
+  <wsdl:message name="ICNEMCService_GetAir_Cityday_AQI_SrcListByTime_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAir_Cityday_AQI_SrcListByTimeResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICNEMCService_GetAir_CityDay_AQI_NonRule_Max_Src_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAir_CityDay_AQI_NonRule_Max_Src" />
+  </wsdl:message>
+  <wsdl:message name="ICNEMCService_GetAir_CityDay_AQI_NonRule_Max_Src_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAir_CityDay_AQI_NonRule_Max_SrcResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICNEMCService_GetAir_CityDay_AQI_NonRule_Max_SrcList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAir_CityDay_AQI_NonRule_Max_SrcList" />
+  </wsdl:message>
+  <wsdl:message name="ICNEMCService_GetAir_CityDay_AQI_NonRule_Max_SrcList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAir_CityDay_AQI_NonRule_Max_SrcListResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICNEMCService_GetAir_CityDay_AQI_NonRule_Max_SrcListByTime_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAir_CityDay_AQI_NonRule_Max_SrcListByTime" />
+  </wsdl:message>
+  <wsdl:message name="ICNEMCService_GetAir_CityDay_AQI_NonRule_Max_SrcListByTime_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAir_CityDay_AQI_NonRule_Max_SrcListByTimeResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICNEMCService_GetAir_CityDay_AQI_NonRule_Src_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAir_CityDay_AQI_NonRule_Src" />
+  </wsdl:message>
+  <wsdl:message name="ICNEMCService_GetAir_CityDay_AQI_NonRule_Src_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAir_CityDay_AQI_NonRule_SrcResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICNEMCService_GetAir_CityDay_AQI_NonRule_SrcList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAir_CityDay_AQI_NonRule_SrcList" />
+  </wsdl:message>
+  <wsdl:message name="ICNEMCService_GetAir_CityDay_AQI_NonRule_SrcList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAir_CityDay_AQI_NonRule_SrcListResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICNEMCService_GetAir_CityDay_AQI_NonRule_SrcListByTime_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAir_CityDay_AQI_NonRule_SrcListByTime" />
+  </wsdl:message>
+  <wsdl:message name="ICNEMCService_GetAir_CityDay_AQI_NonRule_SrcListByTime_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAir_CityDay_AQI_NonRule_SrcListByTimeResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICNEMCService_GetAir_day_AQI_App_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAir_day_AQI_App" />
+  </wsdl:message>
+  <wsdl:message name="ICNEMCService_GetAir_day_AQI_App_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAir_day_AQI_AppResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICNEMCService_GetAir_day_AQI_AppList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAir_day_AQI_AppList" />
+  </wsdl:message>
+  <wsdl:message name="ICNEMCService_GetAir_day_AQI_AppList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAir_day_AQI_AppListResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICNEMCService_GetAir_day_AQI_AppListByTime_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAir_day_AQI_AppListByTime" />
+  </wsdl:message>
+  <wsdl:message name="ICNEMCService_GetAir_day_AQI_AppListByTime_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAir_day_AQI_AppListByTimeResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICNEMCService_GetAir_day_AQI_Src_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAir_day_AQI_Src" />
+  </wsdl:message>
+  <wsdl:message name="ICNEMCService_GetAir_day_AQI_Src_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAir_day_AQI_SrcResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICNEMCService_GetAir_day_AQI_SrcList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAir_day_AQI_SrcList" />
+  </wsdl:message>
+  <wsdl:message name="ICNEMCService_GetAir_day_AQI_SrcList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAir_day_AQI_SrcListResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICNEMCService_GetAir_day_AQI_SrcListByTime_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAir_day_AQI_SrcListByTime" />
+  </wsdl:message>
+  <wsdl:message name="ICNEMCService_GetAir_day_AQI_SrcListByTime_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAir_day_AQI_SrcListByTimeResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICNEMCService_GetAir_CityHour_AQI_App_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAir_CityHour_AQI_App" />
+  </wsdl:message>
+  <wsdl:message name="ICNEMCService_GetAir_CityHour_AQI_App_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAir_CityHour_AQI_AppResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICNEMCService_GetAir_CityHour_AQI_AppList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAir_CityHour_AQI_AppList" />
+  </wsdl:message>
+  <wsdl:message name="ICNEMCService_GetAir_CityHour_AQI_AppList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAir_CityHour_AQI_AppListResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICNEMCService_GetAir_CityHour_AQI_AppListByTime_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAir_CityHour_AQI_AppListByTime" />
+  </wsdl:message>
+  <wsdl:message name="ICNEMCService_GetAir_CityHour_AQI_AppListByTime_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAir_CityHour_AQI_AppListByTimeResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICNEMCService_GetAir_CityHour_AQI_Src_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAir_CityHour_AQI_Src" />
+  </wsdl:message>
+  <wsdl:message name="ICNEMCService_GetAir_CityHour_AQI_Src_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAir_CityHour_AQI_SrcResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICNEMCService_GetAir_CityHour_AQI_SrcList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAir_CityHour_AQI_SrcList" />
+  </wsdl:message>
+  <wsdl:message name="ICNEMCService_GetAir_CityHour_AQI_SrcList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAir_CityHour_AQI_SrcListResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICNEMCService_GetAir_CityHour_AQI_SrcListByTime_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAir_CityHour_AQI_SrcListByTime" />
+  </wsdl:message>
+  <wsdl:message name="ICNEMCService_GetAir_CityHour_AQI_SrcListByTime_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAir_CityHour_AQI_SrcListByTimeResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICNEMCService_GetVDataCenterHourDataApp_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetVDataCenterHourDataApp" />
+  </wsdl:message>
+  <wsdl:message name="ICNEMCService_GetVDataCenterHourDataApp_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetVDataCenterHourDataAppResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICNEMCService_GetVDataCenterHourDataAppList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetVDataCenterHourDataAppList" />
+  </wsdl:message>
+  <wsdl:message name="ICNEMCService_GetVDataCenterHourDataAppList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetVDataCenterHourDataAppListResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICNEMCService_GetVDataCenterHourDataAppListByTime_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetVDataCenterHourDataAppListByTime" />
+  </wsdl:message>
+  <wsdl:message name="ICNEMCService_GetVDataCenterHourDataAppListByTime_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetVDataCenterHourDataAppListByTimeResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICNEMCService_GetVDataCenterHourDataSrc_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetVDataCenterHourDataSrc" />
+  </wsdl:message>
+  <wsdl:message name="ICNEMCService_GetVDataCenterHourDataSrc_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetVDataCenterHourDataSrcResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICNEMCService_GetVDataCenterHourDataSrcList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetVDataCenterHourDataSrcList" />
+  </wsdl:message>
+  <wsdl:message name="ICNEMCService_GetVDataCenterHourDataSrcList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetVDataCenterHourDataSrcListResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICNEMCService_GetVDataCenterHourDataSrcListByTime_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetVDataCenterHourDataSrcListByTime" />
+  </wsdl:message>
+  <wsdl:message name="ICNEMCService_GetVDataCenterHourDataSrcListByTime_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetVDataCenterHourDataSrcListByTimeResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICNEMCService_GetAQIDataPublishLive_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAQIDataPublishLive" />
+  </wsdl:message>
+  <wsdl:message name="ICNEMCService_GetAQIDataPublishLive_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAQIDataPublishLiveResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICNEMCService_GetAQIDataPublishLiveList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAQIDataPublishLiveList" />
+  </wsdl:message>
+  <wsdl:message name="ICNEMCService_GetAQIDataPublishLiveList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAQIDataPublishLiveListResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICNEMCService_GetAQIDataPublishLiveListByTime_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAQIDataPublishLiveListByTime" />
+  </wsdl:message>
+  <wsdl:message name="ICNEMCService_GetAQIDataPublishLiveListByTime_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAQIDataPublishLiveListByTimeResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICNEMCService_GetAQIDataPublishHistory_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAQIDataPublishHistory" />
+  </wsdl:message>
+  <wsdl:message name="ICNEMCService_GetAQIDataPublishHistory_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAQIDataPublishHistoryResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICNEMCService_GetAQIDataPublishHistoryList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAQIDataPublishHistoryList" />
+  </wsdl:message>
+  <wsdl:message name="ICNEMCService_GetAQIDataPublishHistoryList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAQIDataPublishHistoryListResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICNEMCService_GetAQIDataPublishHistoryListByTime_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAQIDataPublishHistoryListByTime" />
+  </wsdl:message>
+  <wsdl:message name="ICNEMCService_GetAQIDataPublishHistoryListByTime_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAQIDataPublishHistoryListByTimeResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICNEMCService_GetCityAQIPublishLive_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCityAQIPublishLive" />
+  </wsdl:message>
+  <wsdl:message name="ICNEMCService_GetCityAQIPublishLive_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCityAQIPublishLiveResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICNEMCService_GetCityAQIPublishLiveList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCityAQIPublishLiveList" />
+  </wsdl:message>
+  <wsdl:message name="ICNEMCService_GetCityAQIPublishLiveList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCityAQIPublishLiveListResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICNEMCService_GetCityAQIPublishLiveListByTime_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCityAQIPublishLiveListByTime" />
+  </wsdl:message>
+  <wsdl:message name="ICNEMCService_GetCityAQIPublishLiveListByTime_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCityAQIPublishLiveListByTimeResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICNEMCService_GetCityAQIPublishHistory_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCityAQIPublishHistory" />
+  </wsdl:message>
+  <wsdl:message name="ICNEMCService_GetCityAQIPublishHistory_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCityAQIPublishHistoryResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICNEMCService_GetCityAQIPublishHistoryList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCityAQIPublishHistoryList" />
+  </wsdl:message>
+  <wsdl:message name="ICNEMCService_GetCityAQIPublishHistoryList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCityAQIPublishHistoryListResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICNEMCService_GetCityAQIPublishHistoryListByTime_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCityAQIPublishHistoryListByTime" />
+  </wsdl:message>
+  <wsdl:message name="ICNEMCService_GetCityAQIPublishHistoryListByTime_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCityAQIPublishHistoryListByTimeResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICNEMCService_GetCityDayAQIPublishLive_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCityDayAQIPublishLive" />
+  </wsdl:message>
+  <wsdl:message name="ICNEMCService_GetCityDayAQIPublishLive_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCityDayAQIPublishLiveResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICNEMCService_GetCityDayAQIPublishLiveList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCityDayAQIPublishLiveList" />
+  </wsdl:message>
+  <wsdl:message name="ICNEMCService_GetCityDayAQIPublishLiveList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCityDayAQIPublishLiveListResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICNEMCService_GetCityDayAQIPublishLiveListByTime_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCityDayAQIPublishLiveListByTime" />
+  </wsdl:message>
+  <wsdl:message name="ICNEMCService_GetCityDayAQIPublishLiveListByTime_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCityDayAQIPublishLiveListByTimeResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICNEMCService_GetCityDayAQIPublishHistory_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCityDayAQIPublishHistory" />
+  </wsdl:message>
+  <wsdl:message name="ICNEMCService_GetCityDayAQIPublishHistory_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCityDayAQIPublishHistoryResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICNEMCService_GetCityDayAQIPublishHistoryList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCityDayAQIPublishHistoryList" />
+  </wsdl:message>
+  <wsdl:message name="ICNEMCService_GetCityDayAQIPublishHistoryList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCityDayAQIPublishHistoryListResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICNEMCService_GetCityDayAQIPublishHistoryListByTime_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCityDayAQIPublishHistoryListByTime" />
+  </wsdl:message>
+  <wsdl:message name="ICNEMCService_GetCityDayAQIPublishHistoryListByTime_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCityDayAQIPublishHistoryListByTimeResponse" />
+  </wsdl:message>
+  <wsdl:portType name="ICNEMCService">
+    <wsdl:operation name="Login">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICNEMCService/Login" message="tns:ICNEMCService_Login_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICNEMCService/LoginResponse" message="tns:ICNEMCService_Login_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLoginUser">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICNEMCService/GetLoginUser" message="tns:ICNEMCService_GetLoginUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICNEMCService/GetLoginUserResponse" message="tns:ICNEMCService_GetLoginUser_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAir_Cityday_AQI_App">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICNEMCService/GetAir_Cityday_AQI_App" message="tns:ICNEMCService_GetAir_Cityday_AQI_App_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICNEMCService/GetAir_Cityday_AQI_AppResponse" message="tns:ICNEMCService_GetAir_Cityday_AQI_App_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAir_Cityday_AQI_AppList">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICNEMCService/GetAir_Cityday_AQI_AppList" message="tns:ICNEMCService_GetAir_Cityday_AQI_AppList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICNEMCService/GetAir_Cityday_AQI_AppListResponse" message="tns:ICNEMCService_GetAir_Cityday_AQI_AppList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAir_Cityday_AQI_AppListByTime">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICNEMCService/GetAir_Cityday_AQI_AppListByTime" message="tns:ICNEMCService_GetAir_Cityday_AQI_AppListByTime_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICNEMCService/GetAir_Cityday_AQI_AppListByTimeResponse" message="tns:ICNEMCService_GetAir_Cityday_AQI_AppListByTime_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAir_Cityday_AQI_Src">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICNEMCService/GetAir_Cityday_AQI_Src" message="tns:ICNEMCService_GetAir_Cityday_AQI_Src_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICNEMCService/GetAir_Cityday_AQI_SrcResponse" message="tns:ICNEMCService_GetAir_Cityday_AQI_Src_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAir_Cityday_AQI_SrcList">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICNEMCService/GetAir_Cityday_AQI_SrcList" message="tns:ICNEMCService_GetAir_Cityday_AQI_SrcList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICNEMCService/GetAir_Cityday_AQI_SrcListResponse" message="tns:ICNEMCService_GetAir_Cityday_AQI_SrcList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAir_Cityday_AQI_SrcListByTime">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICNEMCService/GetAir_Cityday_AQI_SrcListByTime" message="tns:ICNEMCService_GetAir_Cityday_AQI_SrcListByTime_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICNEMCService/GetAir_Cityday_AQI_SrcListByTimeResponse" message="tns:ICNEMCService_GetAir_Cityday_AQI_SrcListByTime_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAir_CityDay_AQI_NonRule_Max_Src">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICNEMCService/GetAir_CityDay_AQI_NonRule_Max_Src" message="tns:ICNEMCService_GetAir_CityDay_AQI_NonRule_Max_Src_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICNEMCService/GetAir_CityDay_AQI_NonRule_Max_SrcResponse" message="tns:ICNEMCService_GetAir_CityDay_AQI_NonRule_Max_Src_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAir_CityDay_AQI_NonRule_Max_SrcList">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICNEMCService/GetAir_CityDay_AQI_NonRule_Max_SrcList" message="tns:ICNEMCService_GetAir_CityDay_AQI_NonRule_Max_SrcList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICNEMCService/GetAir_CityDay_AQI_NonRule_Max_SrcListResponse" message="tns:ICNEMCService_GetAir_CityDay_AQI_NonRule_Max_SrcList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAir_CityDay_AQI_NonRule_Max_SrcListByTime">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICNEMCService/GetAir_CityDay_AQI_NonRule_Max_SrcListByTime" message="tns:ICNEMCService_GetAir_CityDay_AQI_NonRule_Max_SrcListByTime_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICNEMCService/GetAir_CityDay_AQI_NonRule_Max_SrcListByTimeResponse" message="tns:ICNEMCService_GetAir_CityDay_AQI_NonRule_Max_SrcListByTime_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAir_CityDay_AQI_NonRule_Src">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICNEMCService/GetAir_CityDay_AQI_NonRule_Src" message="tns:ICNEMCService_GetAir_CityDay_AQI_NonRule_Src_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICNEMCService/GetAir_CityDay_AQI_NonRule_SrcResponse" message="tns:ICNEMCService_GetAir_CityDay_AQI_NonRule_Src_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAir_CityDay_AQI_NonRule_SrcList">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICNEMCService/GetAir_CityDay_AQI_NonRule_SrcList" message="tns:ICNEMCService_GetAir_CityDay_AQI_NonRule_SrcList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICNEMCService/GetAir_CityDay_AQI_NonRule_SrcListResponse" message="tns:ICNEMCService_GetAir_CityDay_AQI_NonRule_SrcList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAir_CityDay_AQI_NonRule_SrcListByTime">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICNEMCService/GetAir_CityDay_AQI_NonRule_SrcListByTime" message="tns:ICNEMCService_GetAir_CityDay_AQI_NonRule_SrcListByTime_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICNEMCService/GetAir_CityDay_AQI_NonRule_SrcListByTimeResponse" message="tns:ICNEMCService_GetAir_CityDay_AQI_NonRule_SrcListByTime_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAir_day_AQI_App">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICNEMCService/GetAir_day_AQI_App" message="tns:ICNEMCService_GetAir_day_AQI_App_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICNEMCService/GetAir_day_AQI_AppResponse" message="tns:ICNEMCService_GetAir_day_AQI_App_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAir_day_AQI_AppList">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICNEMCService/GetAir_day_AQI_AppList" message="tns:ICNEMCService_GetAir_day_AQI_AppList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICNEMCService/GetAir_day_AQI_AppListResponse" message="tns:ICNEMCService_GetAir_day_AQI_AppList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAir_day_AQI_AppListByTime">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICNEMCService/GetAir_day_AQI_AppListByTime" message="tns:ICNEMCService_GetAir_day_AQI_AppListByTime_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICNEMCService/GetAir_day_AQI_AppListByTimeResponse" message="tns:ICNEMCService_GetAir_day_AQI_AppListByTime_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAir_day_AQI_Src">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICNEMCService/GetAir_day_AQI_Src" message="tns:ICNEMCService_GetAir_day_AQI_Src_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICNEMCService/GetAir_day_AQI_SrcResponse" message="tns:ICNEMCService_GetAir_day_AQI_Src_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAir_day_AQI_SrcList">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICNEMCService/GetAir_day_AQI_SrcList" message="tns:ICNEMCService_GetAir_day_AQI_SrcList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICNEMCService/GetAir_day_AQI_SrcListResponse" message="tns:ICNEMCService_GetAir_day_AQI_SrcList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAir_day_AQI_SrcListByTime">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICNEMCService/GetAir_day_AQI_SrcListByTime" message="tns:ICNEMCService_GetAir_day_AQI_SrcListByTime_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICNEMCService/GetAir_day_AQI_SrcListByTimeResponse" message="tns:ICNEMCService_GetAir_day_AQI_SrcListByTime_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAir_CityHour_AQI_App">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICNEMCService/GetAir_CityHour_AQI_App" message="tns:ICNEMCService_GetAir_CityHour_AQI_App_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICNEMCService/GetAir_CityHour_AQI_AppResponse" message="tns:ICNEMCService_GetAir_CityHour_AQI_App_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAir_CityHour_AQI_AppList">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICNEMCService/GetAir_CityHour_AQI_AppList" message="tns:ICNEMCService_GetAir_CityHour_AQI_AppList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICNEMCService/GetAir_CityHour_AQI_AppListResponse" message="tns:ICNEMCService_GetAir_CityHour_AQI_AppList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAir_CityHour_AQI_AppListByTime">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICNEMCService/GetAir_CityHour_AQI_AppListByTime" message="tns:ICNEMCService_GetAir_CityHour_AQI_AppListByTime_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICNEMCService/GetAir_CityHour_AQI_AppListByTimeResponse" message="tns:ICNEMCService_GetAir_CityHour_AQI_AppListByTime_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAir_CityHour_AQI_Src">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICNEMCService/GetAir_CityHour_AQI_Src" message="tns:ICNEMCService_GetAir_CityHour_AQI_Src_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICNEMCService/GetAir_CityHour_AQI_SrcResponse" message="tns:ICNEMCService_GetAir_CityHour_AQI_Src_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAir_CityHour_AQI_SrcList">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICNEMCService/GetAir_CityHour_AQI_SrcList" message="tns:ICNEMCService_GetAir_CityHour_AQI_SrcList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICNEMCService/GetAir_CityHour_AQI_SrcListResponse" message="tns:ICNEMCService_GetAir_CityHour_AQI_SrcList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAir_CityHour_AQI_SrcListByTime">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICNEMCService/GetAir_CityHour_AQI_SrcListByTime" message="tns:ICNEMCService_GetAir_CityHour_AQI_SrcListByTime_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICNEMCService/GetAir_CityHour_AQI_SrcListByTimeResponse" message="tns:ICNEMCService_GetAir_CityHour_AQI_SrcListByTime_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetVDataCenterHourDataApp">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICNEMCService/GetVDataCenterHourDataApp" message="tns:ICNEMCService_GetVDataCenterHourDataApp_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICNEMCService/GetVDataCenterHourDataAppResponse" message="tns:ICNEMCService_GetVDataCenterHourDataApp_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetVDataCenterHourDataAppList">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICNEMCService/GetVDataCenterHourDataAppList" message="tns:ICNEMCService_GetVDataCenterHourDataAppList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICNEMCService/GetVDataCenterHourDataAppListResponse" message="tns:ICNEMCService_GetVDataCenterHourDataAppList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetVDataCenterHourDataAppListByTime">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICNEMCService/GetVDataCenterHourDataAppListByTime" message="tns:ICNEMCService_GetVDataCenterHourDataAppListByTime_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICNEMCService/GetVDataCenterHourDataAppListByTimeResponse" message="tns:ICNEMCService_GetVDataCenterHourDataAppListByTime_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetVDataCenterHourDataSrc">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICNEMCService/GetVDataCenterHourDataSrc" message="tns:ICNEMCService_GetVDataCenterHourDataSrc_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICNEMCService/GetVDataCenterHourDataSrcResponse" message="tns:ICNEMCService_GetVDataCenterHourDataSrc_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetVDataCenterHourDataSrcList">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICNEMCService/GetVDataCenterHourDataSrcList" message="tns:ICNEMCService_GetVDataCenterHourDataSrcList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICNEMCService/GetVDataCenterHourDataSrcListResponse" message="tns:ICNEMCService_GetVDataCenterHourDataSrcList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetVDataCenterHourDataSrcListByTime">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICNEMCService/GetVDataCenterHourDataSrcListByTime" message="tns:ICNEMCService_GetVDataCenterHourDataSrcListByTime_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICNEMCService/GetVDataCenterHourDataSrcListByTimeResponse" message="tns:ICNEMCService_GetVDataCenterHourDataSrcListByTime_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAQIDataPublishLive">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICNEMCService/GetAQIDataPublishLive" message="tns:ICNEMCService_GetAQIDataPublishLive_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICNEMCService/GetAQIDataPublishLiveResponse" message="tns:ICNEMCService_GetAQIDataPublishLive_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAQIDataPublishLiveList">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICNEMCService/GetAQIDataPublishLiveList" message="tns:ICNEMCService_GetAQIDataPublishLiveList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICNEMCService/GetAQIDataPublishLiveListResponse" message="tns:ICNEMCService_GetAQIDataPublishLiveList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAQIDataPublishLiveListByTime">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICNEMCService/GetAQIDataPublishLiveListByTime" message="tns:ICNEMCService_GetAQIDataPublishLiveListByTime_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICNEMCService/GetAQIDataPublishLiveListByTimeResponse" message="tns:ICNEMCService_GetAQIDataPublishLiveListByTime_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAQIDataPublishHistory">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICNEMCService/GetAQIDataPublishHistory" message="tns:ICNEMCService_GetAQIDataPublishHistory_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICNEMCService/GetAQIDataPublishHistoryResponse" message="tns:ICNEMCService_GetAQIDataPublishHistory_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAQIDataPublishHistoryList">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICNEMCService/GetAQIDataPublishHistoryList" message="tns:ICNEMCService_GetAQIDataPublishHistoryList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICNEMCService/GetAQIDataPublishHistoryListResponse" message="tns:ICNEMCService_GetAQIDataPublishHistoryList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAQIDataPublishHistoryListByTime">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICNEMCService/GetAQIDataPublishHistoryListByTime" message="tns:ICNEMCService_GetAQIDataPublishHistoryListByTime_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICNEMCService/GetAQIDataPublishHistoryListByTimeResponse" message="tns:ICNEMCService_GetAQIDataPublishHistoryListByTime_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCityAQIPublishLive">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICNEMCService/GetCityAQIPublishLive" message="tns:ICNEMCService_GetCityAQIPublishLive_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICNEMCService/GetCityAQIPublishLiveResponse" message="tns:ICNEMCService_GetCityAQIPublishLive_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCityAQIPublishLiveList">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICNEMCService/GetCityAQIPublishLiveList" message="tns:ICNEMCService_GetCityAQIPublishLiveList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICNEMCService/GetCityAQIPublishLiveListResponse" message="tns:ICNEMCService_GetCityAQIPublishLiveList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCityAQIPublishLiveListByTime">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICNEMCService/GetCityAQIPublishLiveListByTime" message="tns:ICNEMCService_GetCityAQIPublishLiveListByTime_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICNEMCService/GetCityAQIPublishLiveListByTimeResponse" message="tns:ICNEMCService_GetCityAQIPublishLiveListByTime_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCityAQIPublishHistory">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICNEMCService/GetCityAQIPublishHistory" message="tns:ICNEMCService_GetCityAQIPublishHistory_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICNEMCService/GetCityAQIPublishHistoryResponse" message="tns:ICNEMCService_GetCityAQIPublishHistory_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCityAQIPublishHistoryList">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICNEMCService/GetCityAQIPublishHistoryList" message="tns:ICNEMCService_GetCityAQIPublishHistoryList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICNEMCService/GetCityAQIPublishHistoryListResponse" message="tns:ICNEMCService_GetCityAQIPublishHistoryList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCityAQIPublishHistoryListByTime">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICNEMCService/GetCityAQIPublishHistoryListByTime" message="tns:ICNEMCService_GetCityAQIPublishHistoryListByTime_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICNEMCService/GetCityAQIPublishHistoryListByTimeResponse" message="tns:ICNEMCService_GetCityAQIPublishHistoryListByTime_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCityDayAQIPublishLive">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICNEMCService/GetCityDayAQIPublishLive" message="tns:ICNEMCService_GetCityDayAQIPublishLive_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICNEMCService/GetCityDayAQIPublishLiveResponse" message="tns:ICNEMCService_GetCityDayAQIPublishLive_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCityDayAQIPublishLiveList">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICNEMCService/GetCityDayAQIPublishLiveList" message="tns:ICNEMCService_GetCityDayAQIPublishLiveList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICNEMCService/GetCityDayAQIPublishLiveListResponse" message="tns:ICNEMCService_GetCityDayAQIPublishLiveList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCityDayAQIPublishLiveListByTime">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICNEMCService/GetCityDayAQIPublishLiveListByTime" message="tns:ICNEMCService_GetCityDayAQIPublishLiveListByTime_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICNEMCService/GetCityDayAQIPublishLiveListByTimeResponse" message="tns:ICNEMCService_GetCityDayAQIPublishLiveListByTime_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCityDayAQIPublishHistory">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICNEMCService/GetCityDayAQIPublishHistory" message="tns:ICNEMCService_GetCityDayAQIPublishHistory_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICNEMCService/GetCityDayAQIPublishHistoryResponse" message="tns:ICNEMCService_GetCityDayAQIPublishHistory_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCityDayAQIPublishHistoryList">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICNEMCService/GetCityDayAQIPublishHistoryList" message="tns:ICNEMCService_GetCityDayAQIPublishHistoryList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICNEMCService/GetCityDayAQIPublishHistoryListResponse" message="tns:ICNEMCService_GetCityDayAQIPublishHistoryList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCityDayAQIPublishHistoryListByTime">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICNEMCService/GetCityDayAQIPublishHistoryListByTime" message="tns:ICNEMCService_GetCityDayAQIPublishHistoryListByTime_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICNEMCService/GetCityDayAQIPublishHistoryListByTimeResponse" message="tns:ICNEMCService_GetCityDayAQIPublishHistoryListByTime_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_ICNEMCService" type="tns:ICNEMCService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Login">
+      <soap:operation soapAction="http://tempuri.org/ICNEMCService/Login" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLoginUser">
+      <soap:operation soapAction="http://tempuri.org/ICNEMCService/GetLoginUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAir_Cityday_AQI_App">
+      <soap:operation soapAction="http://tempuri.org/ICNEMCService/GetAir_Cityday_AQI_App" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAir_Cityday_AQI_AppList">
+      <soap:operation soapAction="http://tempuri.org/ICNEMCService/GetAir_Cityday_AQI_AppList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAir_Cityday_AQI_AppListByTime">
+      <soap:operation soapAction="http://tempuri.org/ICNEMCService/GetAir_Cityday_AQI_AppListByTime" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAir_Cityday_AQI_Src">
+      <soap:operation soapAction="http://tempuri.org/ICNEMCService/GetAir_Cityday_AQI_Src" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAir_Cityday_AQI_SrcList">
+      <soap:operation soapAction="http://tempuri.org/ICNEMCService/GetAir_Cityday_AQI_SrcList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAir_Cityday_AQI_SrcListByTime">
+      <soap:operation soapAction="http://tempuri.org/ICNEMCService/GetAir_Cityday_AQI_SrcListByTime" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAir_CityDay_AQI_NonRule_Max_Src">
+      <soap:operation soapAction="http://tempuri.org/ICNEMCService/GetAir_CityDay_AQI_NonRule_Max_Src" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAir_CityDay_AQI_NonRule_Max_SrcList">
+      <soap:operation soapAction="http://tempuri.org/ICNEMCService/GetAir_CityDay_AQI_NonRule_Max_SrcList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAir_CityDay_AQI_NonRule_Max_SrcListByTime">
+      <soap:operation soapAction="http://tempuri.org/ICNEMCService/GetAir_CityDay_AQI_NonRule_Max_SrcListByTime" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAir_CityDay_AQI_NonRule_Src">
+      <soap:operation soapAction="http://tempuri.org/ICNEMCService/GetAir_CityDay_AQI_NonRule_Src" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAir_CityDay_AQI_NonRule_SrcList">
+      <soap:operation soapAction="http://tempuri.org/ICNEMCService/GetAir_CityDay_AQI_NonRule_SrcList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAir_CityDay_AQI_NonRule_SrcListByTime">
+      <soap:operation soapAction="http://tempuri.org/ICNEMCService/GetAir_CityDay_AQI_NonRule_SrcListByTime" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAir_day_AQI_App">
+      <soap:operation soapAction="http://tempuri.org/ICNEMCService/GetAir_day_AQI_App" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAir_day_AQI_AppList">
+      <soap:operation soapAction="http://tempuri.org/ICNEMCService/GetAir_day_AQI_AppList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAir_day_AQI_AppListByTime">
+      <soap:operation soapAction="http://tempuri.org/ICNEMCService/GetAir_day_AQI_AppListByTime" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAir_day_AQI_Src">
+      <soap:operation soapAction="http://tempuri.org/ICNEMCService/GetAir_day_AQI_Src" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAir_day_AQI_SrcList">
+      <soap:operation soapAction="http://tempuri.org/ICNEMCService/GetAir_day_AQI_SrcList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAir_day_AQI_SrcListByTime">
+      <soap:operation soapAction="http://tempuri.org/ICNEMCService/GetAir_day_AQI_SrcListByTime" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAir_CityHour_AQI_App">
+      <soap:operation soapAction="http://tempuri.org/ICNEMCService/GetAir_CityHour_AQI_App" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAir_CityHour_AQI_AppList">
+      <soap:operation soapAction="http://tempuri.org/ICNEMCService/GetAir_CityHour_AQI_AppList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAir_CityHour_AQI_AppListByTime">
+      <soap:operation soapAction="http://tempuri.org/ICNEMCService/GetAir_CityHour_AQI_AppListByTime" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAir_CityHour_AQI_Src">
+      <soap:operation soapAction="http://tempuri.org/ICNEMCService/GetAir_CityHour_AQI_Src" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAir_CityHour_AQI_SrcList">
+      <soap:operation soapAction="http://tempuri.org/ICNEMCService/GetAir_CityHour_AQI_SrcList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAir_CityHour_AQI_SrcListByTime">
+      <soap:operation soapAction="http://tempuri.org/ICNEMCService/GetAir_CityHour_AQI_SrcListByTime" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetVDataCenterHourDataApp">
+      <soap:operation soapAction="http://tempuri.org/ICNEMCService/GetVDataCenterHourDataApp" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetVDataCenterHourDataAppList">
+      <soap:operation soapAction="http://tempuri.org/ICNEMCService/GetVDataCenterHourDataAppList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetVDataCenterHourDataAppListByTime">
+      <soap:operation soapAction="http://tempuri.org/ICNEMCService/GetVDataCenterHourDataAppListByTime" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetVDataCenterHourDataSrc">
+      <soap:operation soapAction="http://tempuri.org/ICNEMCService/GetVDataCenterHourDataSrc" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetVDataCenterHourDataSrcList">
+      <soap:operation soapAction="http://tempuri.org/ICNEMCService/GetVDataCenterHourDataSrcList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetVDataCenterHourDataSrcListByTime">
+      <soap:operation soapAction="http://tempuri.org/ICNEMCService/GetVDataCenterHourDataSrcListByTime" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAQIDataPublishLive">
+      <soap:operation soapAction="http://tempuri.org/ICNEMCService/GetAQIDataPublishLive" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAQIDataPublishLiveList">
+      <soap:operation soapAction="http://tempuri.org/ICNEMCService/GetAQIDataPublishLiveList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAQIDataPublishLiveListByTime">
+      <soap:operation soapAction="http://tempuri.org/ICNEMCService/GetAQIDataPublishLiveListByTime" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAQIDataPublishHistory">
+      <soap:operation soapAction="http://tempuri.org/ICNEMCService/GetAQIDataPublishHistory" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAQIDataPublishHistoryList">
+      <soap:operation soapAction="http://tempuri.org/ICNEMCService/GetAQIDataPublishHistoryList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAQIDataPublishHistoryListByTime">
+      <soap:operation soapAction="http://tempuri.org/ICNEMCService/GetAQIDataPublishHistoryListByTime" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCityAQIPublishLive">
+      <soap:operation soapAction="http://tempuri.org/ICNEMCService/GetCityAQIPublishLive" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCityAQIPublishLiveList">
+      <soap:operation soapAction="http://tempuri.org/ICNEMCService/GetCityAQIPublishLiveList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCityAQIPublishLiveListByTime">
+      <soap:operation soapAction="http://tempuri.org/ICNEMCService/GetCityAQIPublishLiveListByTime" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCityAQIPublishHistory">
+      <soap:operation soapAction="http://tempuri.org/ICNEMCService/GetCityAQIPublishHistory" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCityAQIPublishHistoryList">
+      <soap:operation soapAction="http://tempuri.org/ICNEMCService/GetCityAQIPublishHistoryList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCityAQIPublishHistoryListByTime">
+      <soap:operation soapAction="http://tempuri.org/ICNEMCService/GetCityAQIPublishHistoryListByTime" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCityDayAQIPublishLive">
+      <soap:operation soapAction="http://tempuri.org/ICNEMCService/GetCityDayAQIPublishLive" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCityDayAQIPublishLiveList">
+      <soap:operation soapAction="http://tempuri.org/ICNEMCService/GetCityDayAQIPublishLiveList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCityDayAQIPublishLiveListByTime">
+      <soap:operation soapAction="http://tempuri.org/ICNEMCService/GetCityDayAQIPublishLiveListByTime" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCityDayAQIPublishHistory">
+      <soap:operation soapAction="http://tempuri.org/ICNEMCService/GetCityDayAQIPublishHistory" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCityDayAQIPublishHistoryList">
+      <soap:operation soapAction="http://tempuri.org/ICNEMCService/GetCityDayAQIPublishHistoryList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCityDayAQIPublishHistoryListByTime">
+      <soap:operation soapAction="http://tempuri.org/ICNEMCService/GetCityDayAQIPublishHistoryListByTime" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="CNEMCService">
+    <wsdl:port name="BasicHttpBinding_ICNEMCService" binding="tns:BasicHttpBinding_ICNEMCService">
+      <soap:address location="http://cityphoto.suncereltd.cn:18410/CNEMCService.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

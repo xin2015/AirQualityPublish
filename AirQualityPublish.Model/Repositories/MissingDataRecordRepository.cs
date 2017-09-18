@@ -1,6 +1,7 @@
 ﻿using AirQualityPublish.Model.Entities;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,7 +15,10 @@ namespace AirQualityPublish.Model.Repositories
 
         static MissingDataRecordRepository()
         {
-            maxMissTimes = 30;
+            if (!int.TryParse(ConfigurationManager.AppSettings["MaxMissTimes"], out maxMissTimes))
+            {
+                maxMissTimes = 30;
+            }
         }
 
         public MissingDataRecordRepository(OpenAccessContext context) : base(context)

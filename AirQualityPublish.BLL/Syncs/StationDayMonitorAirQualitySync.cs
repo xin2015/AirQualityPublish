@@ -13,20 +13,20 @@ using Telerik.OpenAccess;
 
 namespace AirQualityPublish.BLL.Syncs
 {
-    public class StationHourMonitorAirQualitySync : SyncBase<StationHourMonitorAirQuality>
+    public class StationDayMonitorAirQualitySync : SyncBase<StationDayMonitorAirQuality>
     {
         protected Station[] Stations { get; set; }
 
-        public StationHourMonitorAirQualitySync(OpenAccessContext context) : base(context)
+        public StationDayMonitorAirQualitySync(OpenAccessContext context) : base(context)
         {
-            Logger = LogManager.GetLogger<StationHourMonitorAirQualitySync>();
-            Interval = TimeSpan.FromHours(1);
+            Logger = LogManager.GetLogger<StationDayMonitorAirQualitySync>();
+            Interval = TimeSpan.FromDays(1);
             Stations = new StationRepository(context).GetList().ToArray();
         }
 
         protected override DateTime GetTime()
         {
-            return DateTime.Today.AddHours(DateTime.Now.Hour);
+            return DateTime.Today.AddDays(-1);
         }
 
         protected override string[] GetCodes(DateTime time)
@@ -34,9 +34,9 @@ namespace AirQualityPublish.BLL.Syncs
             return Stations.Select(o => o.Code).ToArray();
         }
 
-        protected override List<StationHourMonitorAirQuality> GetSyncData(string code, DateTime time)
+        protected override List<StationDayMonitorAirQuality> GetSyncData(string code, DateTime time)
         {
-            List<StationHourMonitorAirQuality> list = new List<StationHourMonitorAirQuality>();
+            List<StationDayMonitorAirQuality> list = new List<StationDayMonitorAirQuality>();
             Station station = Stations.First(o => o.Code == code);
             using (CNEMCService.CNEMCServiceClient client = new CNEMCService.CNEMCServiceClient())
             {
@@ -44,18 +44,18 @@ namespace AirQualityPublish.BLL.Syncs
                 CNEMCService.AQIDataPublishLive src = client.GetAQIDataPublishLive(key, station.EnvPublishCode, time);
                 if (src != null)
                 {
-                    StationHourMonitorAirQuality data = new StationHourMonitorAirQuality()
+                    StationDayMonitorAirQuality data = new StationDayMonitorAirQuality()
                     {
                         Code = code,
                         Time = time,
-                        SO2 = src.SO2.ToNullableDouble(),
-                        NO2 = src.NO2.ToNullableDouble(),
-                        PM10 = src.PM10.ToNullableDouble(),
+                        SO2 = src.SO2_24h.ToNullableDouble(),
+                        NO2 = src.NO2_24h.ToNullableDouble(),
+                        PM10 = src.PM10_24h.ToNullableDouble(),
                         CO = src.CO.ToNullableDouble(),
-                        O3 = src.O3_24h.ToNullableDouble(),
-                        PM25 = src.PM2_5.ToNullableDouble()
+                        O3 = src.O3_8h.ToNullableDouble(),
+                        PM25 = src.PM2_5_24h.ToNullableDouble()
                     };
-                    HourAQICalculator calculator = new HourAQICalculator();
+                    DayAQICalculator calculator = new DayAQICalculator();
                     calculator.CalculateAQI(data);
                     list.Add(data);
                 }
@@ -63,9 +63,9 @@ namespace AirQualityPublish.BLL.Syncs
             return list;
         }
 
-        protected override List<StationHourMonitorAirQuality> GetCoverData(string code, DateTime time)
+        protected override List<StationDayMonitorAirQuality> GetCoverData(string code, DateTime time)
         {
-            List<StationHourMonitorAirQuality> list = new List<StationHourMonitorAirQuality>();
+            List<StationDayMonitorAirQuality> list = new List<StationDayMonitorAirQuality>();
             Station station = Stations.First(o => o.Code == code);
             using (CNEMCService.CNEMCServiceClient client = new CNEMCService.CNEMCServiceClient())
             {
@@ -73,18 +73,18 @@ namespace AirQualityPublish.BLL.Syncs
                 CNEMCService.AQIDataPublishHistory src = client.GetAQIDataPublishHistory(key, station.EnvPublishCode, time);
                 if (src != null)
                 {
-                    StationHourMonitorAirQuality data = new StationHourMonitorAirQuality()
+                    StationDayMonitorAirQuality data = new StationDayMonitorAirQuality()
                     {
                         Code = code,
                         Time = time,
-                        SO2 = src.SO2.ToNullableDouble(),
-                        NO2 = src.NO2.ToNullableDouble(),
-                        PM10 = src.PM10.ToNullableDouble(),
+                        SO2 = src.SO2_24h.ToNullableDouble(),
+                        NO2 = src.NO2_24h.ToNullableDouble(),
+                        PM10 = src.PM10_24h.ToNullableDouble(),
                         CO = src.CO.ToNullableDouble(),
-                        O3 = src.O3_24h.ToNullableDouble(),
-                        PM25 = src.PM2_5.ToNullableDouble()
+                        O3 = src.O3_8h.ToNullableDouble(),
+                        PM25 = src.PM2_5_24h.ToNullableDouble()
                     };
-                    HourAQICalculator calculator = new HourAQICalculator();
+                    DayAQICalculator calculator = new DayAQICalculator();
                     calculator.CalculateAQI(data);
                     list.Add(data);
                 }

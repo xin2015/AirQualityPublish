@@ -50,8 +50,18 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>E:\Modules\Modules.AQE.dll</HintPath>
     </Reference>
+    <Reference Include="Modules.Basic">
+      <HintPath>..\..\..\Modules\Modules.Basic.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -76,10 +86,21 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Extensions\StringExtension.cs" />
+    <Compile Include="Helpers\CNEMCServiceHelper.cs" />
     <Compile Include="Models\ReturnState.cs" />
     <Compile Include="Models\ReturnStatus.cs" />
+    <Compile Include="Models\SystemConfig.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service References\CNEMCService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Services\MissingDataRecordService.cs" />
+    <Compile Include="Syncs\CityDayMonitorAirQualitySync.cs" />
+    <Compile Include="Syncs\CityHourMonitorAirQualitySync.cs" />
+    <Compile Include="Syncs\StationDayMonitorAirQualitySync.cs" />
     <Compile Include="Syncs\StationHourMonitorAirQualitySync.cs" />
     <Compile Include="Syncs\SyncBase.cs" />
   </ItemGroup>
@@ -90,8 +111,98 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.config" />
     <None Include="packages.config" />
+    <None Include="Service References\CNEMCService\AirQualityPublish.BLL.CNEMCService.Air_Cityday_AQI_App.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\CNEMCService\AirQualityPublish.BLL.CNEMCService.Air_CityDay_AQI_NonRule_Max_Src.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\CNEMCService\AirQualityPublish.BLL.CNEMCService.Air_CityDay_AQI_NonRule_Src.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\CNEMCService\AirQualityPublish.BLL.CNEMCService.Air_Cityday_AQI_Src.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\CNEMCService\AirQualityPublish.BLL.CNEMCService.Air_CityHour_AQI_App.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\CNEMCService\AirQualityPublish.BLL.CNEMCService.Air_CityHour_AQI_Src.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\CNEMCService\AirQualityPublish.BLL.CNEMCService.Air_day_AQI_App.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\CNEMCService\AirQualityPublish.BLL.CNEMCService.Air_day_AQI_Src.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\CNEMCService\AirQualityPublish.BLL.CNEMCService.AQIDataPublishHistory.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\CNEMCService\AirQualityPublish.BLL.CNEMCService.AQIDataPublishLive.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\CNEMCService\AirQualityPublish.BLL.CNEMCService.CityAQIPublishHistory.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\CNEMCService\AirQualityPublish.BLL.CNEMCService.CityAQIPublishLive.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\CNEMCService\AirQualityPublish.BLL.CNEMCService.CityDayAQIPublishHistory.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\CNEMCService\AirQualityPublish.BLL.CNEMCService.CityDayAQIPublishLive.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\CNEMCService\AirQualityPublish.BLL.CNEMCService.LoginUser.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\CNEMCService\AirQualityPublish.BLL.CNEMCService.VDataCenterHourDataApp.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\CNEMCService\AirQualityPublish.BLL.CNEMCService.VDataCenterHourDataSrc.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\CNEMCService\CNEMCService.wsdl" />
+    <None Include="Service References\CNEMCService\CNEMCService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\CNEMCService\CNEMCService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\CNEMCService\CNEMCService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\CNEMCService\CNEMCService3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\CNEMCService\CNEMCService4.xsd">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\CNEMCService\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\CNEMCService\CNEMCService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\CNEMCService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\CNEMCService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\CNEMCService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

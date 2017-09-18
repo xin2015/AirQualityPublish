@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="8e338ab5-f679-4622-a748-7beb6cd7bbf2" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://cityphoto.suncereltd.cn:18410/CNEMCService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="CNEMCService.xsd" MetadataType="Schema" ID="70ea8807-d72c-483e-83c9-e507125e0ae5" SourceId="1" SourceUrl="http://cityphoto.suncereltd.cn:18410/CNEMCService.svc?xsd=xsd1" />
+    <MetadataFile FileName="CNEMCService1.xsd" MetadataType="Schema" ID="5caa5189-a4c4-4be6-9aba-9ebf7787b6e3" SourceId="1" SourceUrl="http://cityphoto.suncereltd.cn:18410/CNEMCService.svc?xsd=xsd4" />
+    <MetadataFile FileName="CNEMCService.wsdl" MetadataType="Wsdl" ID="5480ee62-fde7-4069-bd3a-5ab5d5605b2c" SourceId="1" SourceUrl="http://cityphoto.suncereltd.cn:18410/CNEMCService.svc?wsdl" />
+    <MetadataFile FileName="CNEMCService2.xsd" MetadataType="Schema" ID="7df6193f-7b5d-4e34-82cf-515c41a6695d" SourceId="1" SourceUrl="http://cityphoto.suncereltd.cn:18410/CNEMCService.svc?xsd=xsd0" />
+    <MetadataFile FileName="CNEMCService.disco" MetadataType="Disco" ID="71f703dd-2ba6-4243-b9d6-f710fdee4e24" SourceId="1" SourceUrl="http://cityphoto.suncereltd.cn:18410/CNEMCService.svc?disco" />
+    <MetadataFile FileName="CNEMCService3.xsd" MetadataType="Schema" ID="b8902c5a-43ac-45d8-acdc-c186dea47c9c" SourceId="1" SourceUrl="http://cityphoto.suncereltd.cn:18410/CNEMCService.svc?xsd=xsd2" />
+    <MetadataFile FileName="CNEMCService4.xsd" MetadataType="Schema" ID="573f90fd-e33b-46ae-9761-679cdd29ca19" SourceId="1" SourceUrl="http://cityphoto.suncereltd.cn:18410/CNEMCService.svc?xsd=xsd3" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

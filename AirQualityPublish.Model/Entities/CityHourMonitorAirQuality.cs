@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AirQualityPublish.Model.Entities
 {
-    class CityHourMonitorAirQuality : IMonitorAirQualityEntity
+    public class CityHourMonitorAirQuality : IMonitorAirQualityEntity
     {
         public string Code { get; set; }
         public DateTime Time { get; set; }
