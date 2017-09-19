@@ -129,38 +129,6 @@ namespace AirQualityPublish.WindowsForms
             {
                 using (FluentModel db = new FluentModel())
                 {
-                    CodeTimeRepository<StationHourMonitorAirQuality> r = new CodeTimeRepository<StationHourMonitorAirQuality>(db);
-                    string code = "430700051";
-                    DateTime time = new DateTime(2017, 1, 30);
-                    int length = 100000;
-                    for (int i = 0; i < length; i++)
-                    {
-                        if (r.GetAll().Count(o => o.Code == code && o.Time == time) > 0)
-                        {
-
-                        }
-                        if (r.GetAll().Any(o => o.Code == code && o.Time == time))
-                        {
-
-                        }
-                        if (r.GetAll().Count(o => o.Code == code) > 0)
-                        {
-
-                        }
-                        if (r.GetAll().Any(o => o.Code == code))
-                        {
-
-                        }
-                        if (r.GetAll().Count(o => o.Time == time) > 0)
-                        {
-
-                        }
-                        if (r.GetAll().Any(o => o.Time == time))
-                        {
-
-                        }
-                    }
-
                     StationRepository repository = new StationRepository(db);
                     if (repository.GetAll().Count() == 0)
                     {
