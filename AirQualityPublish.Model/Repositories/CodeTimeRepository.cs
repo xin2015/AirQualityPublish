@@ -16,14 +16,12 @@ namespace AirQualityPublish.Model.Repositories
 
         public bool Contains(string code, DateTime time)
         {
-            //return GetAll().Any(o => o.Code == code && o.Time == time);
-            return GetAll().Count(o => o.Code == code && o.Time == time) > 0;
+            return GetAll().Any(o => o.Code == code && o.Time == time);
         }
 
         public bool Contains(DateTime time)
         {
-            //return GetAll().Any(o => o.Time == time);
-            return GetAll().Count(o => o.Time == time) > 0;
+            return GetAll().Any(o => o.Time == time);
         }
     }
 }
