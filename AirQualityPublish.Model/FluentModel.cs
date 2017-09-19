@@ -12,11 +12,7 @@ namespace AirQualityPublish.Model
     {
         private static string connectionStringName = @"AirQualityPublishConnection";
         private static MetadataContainer metadataContainer = new FluentModelMetadataSource().GetModel();
-        private static BackendConfiguration backendConfiguration = new BackendConfiguration()
-        {
-            Backend = "MsSql",
-            ProviderName = "System.Data.SqlClient"
-        };
+        private static BackendConfiguration backendConfiguration = GetBackendConfiguration();
 
         public FluentModel() : base(connectionStringName, backendConfiguration, metadataContainer) { }
 
@@ -48,6 +44,23 @@ namespace AirQualityPublish.Model
             {
                 handler.ExecuteDDLScript(script);
             }
+        }
+
+        public static BackendConfiguration GetBackendConfiguration()
+        {
+            BackendConfiguration backend = new BackendConfiguration();
+            backend.Backend = "MsSql";
+            backend.ProviderName = "System.Data.SqlClient";
+
+            backend.Logging.LogEvents = LoggingLevel.Normal;
+            backend.Logging.StackTrace = true;
+            backend.Logging.EventStoreCapacity = 10000;
+            backend.Logging.MetricStoreCapacity = 3600;
+            backend.Logging.MetricStoreSnapshotInterval = 1000;
+            backend.Logging.Downloader.EventPollSeconds = 1;
+            backend.Logging.Downloader.MetricPollSeconds = 1;
+
+            return backend;
         }
     }
 }

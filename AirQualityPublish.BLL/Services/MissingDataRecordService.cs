@@ -69,7 +69,7 @@ namespace AirQualityPublish.BLL.Services
             }
             catch (Exception e)
             {
-                rs = new ReturnStatus(false, e.Message);
+                rs = new ReturnStatus("回补失败！", e);
                 logger.Error("Cover failed.", e);
             }
             return rs;

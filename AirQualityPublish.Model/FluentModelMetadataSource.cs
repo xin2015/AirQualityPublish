@@ -14,6 +14,12 @@ namespace AirQualityPublish.Model
         protected override IList<MappingConfiguration> PrepareMapping()
         {
             List<MappingConfiguration> mappingConfigurations = new List<MappingConfiguration>();
+            mappingConfigurations.Add(GetMissingDataRecordMappingConfiguration());
+            mappingConfigurations.Add(GetStationMappingConfiguration());
+            mappingConfigurations.Add(GetStationHourMonitorAirQualityMappingConfiguration());
+            mappingConfigurations.Add(GetStationDayMonitorAirQualityMappingConfiguration());
+            mappingConfigurations.Add(GetCityHourMonitorAirQualityMappingConfiguration());
+            mappingConfigurations.Add(GetCityDayMonitorAirQualityMappingConfiguration());
             return mappingConfigurations;
         }
 
