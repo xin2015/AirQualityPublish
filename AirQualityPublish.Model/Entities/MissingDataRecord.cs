@@ -13,10 +13,9 @@ namespace AirQualityPublish.Model.Entities
         public string Code { get; set; }
         public DateTime Time { get; set; }
         public DateTime CreationTime { get; set; }
-        public DateTime? LastModificationTime { get; set; }
+        public DateTime ModificationTime { get; set; }
         public bool Status { get; set; }
         public int MissTimes { get; set; }
         public string Message { get; set; }
-        public string Others { get; set; }
     }
 }

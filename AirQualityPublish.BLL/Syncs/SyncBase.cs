@@ -143,6 +143,7 @@ namespace AirQualityPublish.BLL.Syncs
             {
                 MDRRepository.Add(Type, code, time, e.Message);
                 result = false;
+                Logger.Debug("Sync failed.", e);
             }
             return result;
         }
@@ -219,20 +220,23 @@ namespace AirQualityPublish.BLL.Syncs
                 List<TEntity> list = GetCoverData(mdr.Code, mdr.Time);
                 if (list == null || list.Count == 0)
                 {
-                    MDRRepository.Update(mdr, false, "数据获取失败！");
+                    mdr.MissTimes += 1;
+                    mdr.Message = "数据获取失败！";
                     result = false;
                 }
                 else
                 {
                     Repository.Add(list);
-                    MDRRepository.Update(mdr, true);
+                    mdr.Status = true;
                     result = true;
                 }
             }
             catch (Exception e)
             {
-                MDRRepository.Update(mdr, false, e.Message);
+                mdr.MissTimes += 1;
+                mdr.Message = e.Message;
                 result = false;
+                Logger.Debug("Cover failed.", e);
             }
             return result;
         }

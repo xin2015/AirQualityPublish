@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Telerik.OpenAccess;
 using Telerik.OpenAccess.Metadata;
 using Telerik.OpenAccess.Metadata.Fluent;
 
@@ -36,13 +37,13 @@ namespace AirQualityPublish.Model
         {
             MappingConfiguration<MissingDataRecord> configuration = new MappingConfiguration<MissingDataRecord>();
 
-            configuration.MapType().ToTable(typeof(MissingDataRecord).Name);
+            configuration.MapType().WithConcurencyControl(OptimisticConcurrencyControlStrategy.Timestamp).ToTable(typeof(MissingDataRecord).Name);
 
             configuration.HasProperty(x => x.Id).IsIdentity(KeyGenerator.Autoinc);
             configuration.HasProperty(x => x.Type).IsNotNullable().HasColumnType("nvarchar").HasLength(256);
             configuration.HasProperty(x => x.Code).IsNotNullable().HasColumnType("nvarchar").HasLength(64);
+            configuration.HasProperty(x => x.ModificationTime).IsVersion();
             configuration.HasProperty(x => x.Message).HasColumnType("nvarchar(MAX)");
-            configuration.HasProperty(x => x.Others).HasColumnType("nvarchar(MAX)");
 
             return configuration;
         }

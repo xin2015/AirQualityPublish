@@ -37,20 +37,6 @@ namespace AirQualityPublish.Model.Repositories
             });
         }
 
-        public void Update(MissingDataRecord mdr, bool status, string message = null)
-        {
-            if (status)
-            {
-                mdr.Status = status;
-            }
-            else
-            {
-                mdr.MissTimes += 1;
-                mdr.Message = message;
-            }
-            mdr.LastModificationTime = DateTime.Now;
-        }
-
         public MissingDataRecord Get(string type, string code, DateTime time)
         {
             return GetAll().FirstOrDefault(o => o.Type == type && o.Code == code && o.Time == time);
